@@ -1,7 +1,6 @@
 /*
  *      pixelblock.h
  *      by Jia Wen Goh (jgoh01) & Sean Ong (song02), 10/20/2017
- *      HW4 Arith
  *
  *      - File that defines the pixel & block structs in use throughout 
  *        our program

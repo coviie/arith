@@ -1,7 +1,6 @@
 /*
  *      compress40.c
  *      by Jia Wen Goh (jgoh01) & Sean Ong (song02), 10/20/2017
- *      HW4 Arith
  *
  *      - File that defines compress/decompress functions for 40image
  *      - Compress: Reads an uncompressed portable pixmap from the input stream

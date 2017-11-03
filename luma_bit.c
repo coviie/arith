@@ -1,7 +1,6 @@
 /*
  *      luma_bit.c
  *      by Jia Wen Goh (jgoh01) & Sean Ong (song02), 10/20/2017
- *      HW4 Arith
  *
  *      - Component file defining all extern and helper functions for the
  *        luma_bit component

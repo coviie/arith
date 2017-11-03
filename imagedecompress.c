@@ -1,7 +1,6 @@
 /*
  *      imagedecompress40.c
  *      by Jia Wen Goh (jgoh01) & Sean Ong (song02), 10/20/2017
- *      HW4 Arith
  *
  *      - File that defines the decompress methods for ImageMethods
  *      - Decompress: Reads a compressed COMP40 format image from the input

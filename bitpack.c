@@ -1,7 +1,6 @@
 /*
  *      bitpack.c
  *      by Jia Wen Goh (jgoh01) & Sean Ong (song02), 10/20/2017
- *      HW4 Arith
  *
  *      - This interface manipulates bit fields within a 64-bit/8-byte word.
  */

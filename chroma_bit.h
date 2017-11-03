@@ -1,7 +1,6 @@
 /*
  *      chroma_bit.h
  *      by Jia Wen Goh (jgoh01) & Sean Ong (song02), 10/20/2017
- *      HW4 Arith
  *
  *      - Header file declaring client-accessible functions for the
  *        chroma_bit component

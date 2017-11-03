@@ -1,4 +1,4 @@
-# Makefile for Arith (Comp 40 Assignment 4)
+# Makefile for Arith 
 # 
 # Includes build rules for ppmdiff, bitpack and 40image
 
