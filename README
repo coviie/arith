@@ -1,0 +1,86 @@
+/-------------------------------------------/
+THIS PROGRAM IS BY
+1. Jia Wen Goh (jgoh01)
+2. Sean Ong (song02)
+/-------------------------------------------/
+ACKNOWLEDGEMENTS
+- None
+/-------------------------------------------/
+IMPLEMENTATION
+- This is a modified implementation that has a functional decompressor.
+/-------------------------------------------/
+ARCHITECTURE
+- ImageMethods, which offers a polymorphic interface for compressing and
+  decompressing images in compress40
+      ~ We created ImageMethods as a 'methods suite' for image (de)compression
+        because the algorithm for compression is an inverse of the algorithm
+        of decompression, so the function calls were built to be very similar.
+- RGB_XYZ, which converts between pixel values in the RGB color space (integer)
+  and pixel values in the XYZ color space (floating point num)
+- Chroma_Bit, which converts between chroma values in the XYZ color space
+  (floating point num) and their 4-bit index representations (unsigned integer)
+- Luma_Bit, which converts between luma values in the XYZ color space
+  (floating point num) and their cosine-bit representations (unsigned and
+  signed integers)
+- Pixpack, which packs the bit representations of pixel values into a 32-bit
+  codeword, and unpacks the 32-bit coedeword into the individual bit fields
+- Bitpack, which offers an interface for manipulating bit fields
+
+********************************************************* Fig 1 Architecture **
+  +--------------------------------------------------------------------------+
+  |                        ** Command line input **                          |
+  | - Filename provided on command line, or image provided on standard input |
+  | - User calls compress or decompress on an image                          |
+  +--------------------------------------------------------------------------+
+                   |                                       |                
+  +--------------------------------------------------------------------------+
+  |                        UNCOMPRESSED IMAGE (PPM)                          |
+  +--------------------------------------------------------------------------+
+                   |                                      /|\
+                  \|/                                      |
++------------- COMPRESS -------------+ +------------- DECOMPRESS -------------+
+|       ImageMethods = compress      | |       ImageMethods = decompress      |
+|       +=============================================================+       |
+|       |                          RGB_XYZ                            |       |
+|       | <RGB_to_XYZ>                                   <XYZ_to_RGB> |       |
+|       +=============================================================+       |
+|      chroma   luma                 | |                   /|\    /|\         |
+|          |     |                   | |                    |   chroma        |
+|  +-------v-----+                   | |                    +------|-------+  |
+|  |    +=============================================================+    |  |
+|  |    |                        CHROMA_BIT                           |    |  |
+|  |    | <Chroma_to_Bit>                             <Bit_to_Chroma> |    |  |
+|  |    +=============================================================+    |  |
+|  |       |                         | |                           ^       |  |
+|  +-------|-----------+             | |                +----------|-------+  |
+|          |          \|/            | |              luma         |          |
+|          |     +===========================================+     |          |
+|          |     |                LUMA_BIT                   |     |          |
+|          |     | <Luma_to_Bit>               <Bit_to_Luma> |     |          |
+|          |     +===========================================+     |          |
+|          |                         | |                           |          |
+|          |                         | |                           |          |
+|         \|/                        | |                           |          |
+|       +=============================================================+       |
+|       |                          PIXPACK                            |       |
+|       | <pack>         +==========================+        <unpack> |       |
+|       | <extract_char> |         BITPACK          |    <store_char> |       |
+|       |                +==========================+                 |       |
+|       +=============================================================+       |
+|                |                   | |                 /|\                  |
+|                |                   | |                  |                   |
+|               \|/                  | |                  |                   |
++------------codewords---------------+ +--------------codewords---------------+
+      packed in big endian &                    unpacked byte-by-byte
+         row-major order                                 /|\
+                 |                                        |
+                \|/                                       |
+  +--------------------------------------------------------------------------+
+  |                            COMPRESSED IMAGE                              |
+  +--------------------------------------------------------------------------+
+********************************************************* Fig 1 Architecture **
+
+/-------------------------------------------/
+TIME SPENT
+Analyzing:   10 hours
+Programming: 15 hours
